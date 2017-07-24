@@ -8,7 +8,7 @@ import java.util.Scanner;
  * @author Sergey Onischuk
  *
  */
-public class Engine {
+public class GameService {
 	
 	private View view = new View();
     private ValuesStorage valuesStorage = new ValuesStorage();
@@ -17,8 +17,8 @@ public class Engine {
      * Constructor
      * @param dataBox - model object.
      */
-    public Engine (ValuesStorage dataBox) {
-    	this.valuesStorage = dataBox;
+    public GameService (ValuesStorage valuesStorage) {
+    	this.valuesStorage = valuesStorage;
     }
 
     /**
@@ -31,9 +31,9 @@ public class Engine {
         
         while (rand != valuesStorage.getCurrentValue()) {
             Scanner scanner = new Scanner(System.in);
-            dataValidator(scanner);
+            isInputScannerDataCorrect(scanner);
             view.playerChoise(valuesStorage.getCurrentValue());
-            nextStep(rand);
+            takeNextStep(rand);
             view.printPreviousResluts(valuesStorage.getAttemptsArchive());
         }
     }
@@ -43,13 +43,14 @@ public class Engine {
      * @param scanner - user-entered value.
      * @return
      */
-    public boolean dataValidator(Scanner scanner) {
+    public boolean isInputScannerDataCorrect(Scanner scanner) {
         if (!scanner.hasNextInt()) {
         	view.printDataTypeError();
         	return true;
         }
-
+        
         valuesStorage.setCurrentValue(scanner.nextInt());
+        
         if (valuesStorage.getCurrentValue() >= valuesStorage.getMaxRangeValue()) {
         	view.printOutOfRangeBigger(valuesStorage.getMaxRangeValue());
         	return true;
@@ -58,7 +59,7 @@ public class Engine {
         	view.printOutOfRangeLess(valuesStorage.getMinRangeValue());
         	return true;
         }
-        addPreviousResults(valuesStorage.getAttemptsArchive(), valuesStorage.getCurrentValue());
+        valuesStorage.addPreviousAttemptToStorage(valuesStorage.getAttemptsArchive(), valuesStorage.getCurrentValue());
     	return false;
     }
     
@@ -66,7 +67,7 @@ public class Engine {
      * Method, that analyzing current situation in the game.
      * @param winValue - current value.
      */
-    public void nextStep(int winValue) {
+    public void takeNextStep(int winValue) {
         if (valuesStorage.getCurrentValue() == winValue) {
             view.printWinStatistic();
         } else if (valuesStorage.getCurrentValue() < winValue && valuesStorage.getCurrentValue() > valuesStorage.getMinRangeValue()) {
@@ -76,16 +77,5 @@ public class Engine {
             valuesStorage.setMaxRangeValue(valuesStorage.getCurrentValue());
             view.moveDown(valuesStorage.getMaxRangeValue());
         }
-    }
-    
-    /**
-     * 
-     * @param arr - arrayList of user attempts.
-     * @param currentValue - iterator.
-     * @return arrayList with new element.
-     */
-    private ArrayList<Integer> addPreviousResults(ArrayList<Integer> arr, int currentValue) {
-        arr.add(currentValue);
-        return arr;
     }
 }

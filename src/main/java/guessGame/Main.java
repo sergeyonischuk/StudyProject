@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Main {
 
 	public static void main(String[] args) {
-	    ValuesStorage dataBox = new ValuesStorage(0, 100, new ArrayList<Integer>());
-        Engine engine = new Engine(dataBox);
+	    ValuesStorage valueStorage = new ValuesStorage(0, 100, new ArrayList<Integer>());
+        GameService engine = new GameService(valueStorage);
         engine.startGame();
 
     }

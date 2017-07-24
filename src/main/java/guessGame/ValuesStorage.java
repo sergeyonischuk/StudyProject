@@ -50,7 +50,15 @@ public class ValuesStorage {
         max -= min;
         Random rand = new Random();
         return rand.nextInt(max - 1) + (min + 1);
-
+    }
+    
+    /**
+     * 
+     * @param arr - arrayList of user attempts.
+     * @param currentValue - iterator.
+     */
+    public void addPreviousAttemptToStorage(ArrayList prevAttempts, int currentValue) {
+    	prevAttempts.add(currentValue);
     }
 
     // Getters and setters.
