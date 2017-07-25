@@ -3,18 +3,22 @@ package helloWorldTask;
 import java.util.Scanner;
 
 public class Controller {
+	View view = new View();
+	
     public void getResult() {
         Scanner scanner = new Scanner(System.in);
-        InputData inputData = new InputData(scanner.nextLine(), scanner.nextLine());
+        String firstInputLine = scanner.nextLine();
+        String secondInputLine = scanner.nextLine();
+        InputData inputData = new InputData(firstInputLine, secondInputLine);
         
-    	while (!scanner.nextLine().equals(View.FIRST_WORD_CANONICAL)) {
-    		System.out.println("wtf");
+    	if (!firstInputLine.equals(View.FIRST_WORD_CANONICAL)) {
+    		view.printMessage(view.ERROR_MESSAGE);;
     	}
-    	
-        if (inputData.getFirstWord().equals(View.FIRST_WORD_CANONICAL) && inputData.getSecondWord().equals(View.SECOND_WORD_CANONICAL)) {
-           System.out.println(inputData.getFirstWord() + " " + inputData.getSecondWord());
-        }   else {
-            System.out.println(View.ERROR_MESSAGE);
+        if (firstInputLine.equals(View.FIRST_WORD_CANONICAL)) {
+            if (secondInputLine.equals(inputData.getFirstWord() + " " + inputData.getSecondWord()))
+            	view.printMessage(View.ERROR_MESSAGE);
+            	view.printMessage(inputData.getFirstWord() + " " + inputData.getSecondWord());
+            	scanner.close();
+            }
         }
-    }
 }
