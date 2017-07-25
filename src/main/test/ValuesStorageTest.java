@@ -7,21 +7,22 @@ import guessGame.ValuesStorage;
 
 public class ValuesStorageTest {
 	
-	ValuesStorage vs = new ValuesStorage(10, 35, new ArrayList<Integer>());
+	ValuesStorage vs = new ValuesStorage(6, 8, new ArrayList<Integer>());
 	
 	@Test
 	public void testGetRandomValue() {
-		Assert.assertTrue(vs.getRandomValue(6, 8) > 6 && vs.getRandomValue(6, 8) < 8);
+		Assert.assertTrue(vs.getRandomValue(vs.getMinRangeValue(), vs.getMaxRangeValue()) > 6 
+				&& vs.getRandomValue(vs.getMinRangeValue(), vs.getMaxRangeValue()) < 8);
 	}
 	
 	@Test
 	public void testAddPreviousAttemptToStorage() {
 		ArrayList<Integer> list = new ArrayList<Integer>();
+		
 		ArrayList<Integer> expectedList = new ArrayList<Integer>();
-		expectedList.add(55);
+		expectedList.add(7);
 		
-		Assert.assertEquals(vs.addPreviousAttemptToStorage(list, 55), expectedList);
-		
+		Assert.assertEquals(vs.addPreviousAttemptToStorage(list, 7), expectedList);
 		
 	}
 }

@@ -28,7 +28,7 @@ public class GameService {
     	view.numberCall();
         
         while (rand != valuesStorage.getCurrentValue()) {
-        	isInputScannerDataNotString();
+        	isInputScannerDataNotString(scanner);
             valuesStorage.setCurrentValue(scanner.nextInt());
             isInRange();
             valuesStorage.addPreviousAttemptToStorage(valuesStorage.getAttemptsArchive(), valuesStorage.getCurrentValue());
@@ -41,7 +41,7 @@ public class GameService {
      * Checking method
      * @return check result.
      */
-    public boolean isInputScannerDataNotString() {
+    public boolean isInputScannerDataNotString(Scanner scanner) {
         if (!scanner.hasNextInt()) {
         	view.printDataTypeError();
         	return false;
