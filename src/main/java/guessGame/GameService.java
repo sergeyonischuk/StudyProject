@@ -1,6 +1,5 @@
 package guessGame;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -9,9 +8,9 @@ import java.util.Scanner;
  *
  */
 public class GameService {
-	
 	private View view = new View();
     private ValuesStorage valuesStorage = new ValuesStorage();
+    private Scanner scanner = new Scanner(System.in);
     
     /**
      * Constructor
@@ -25,42 +24,45 @@ public class GameService {
      * Engine method. Describes actions for a particular step.
      */
     public void startGame () {
-    	view.numberCall();
-    	
     	int rand = valuesStorage.getRandomValue(valuesStorage.getMinRangeValue(), valuesStorage.getMaxRangeValue());
+    	view.numberCall();
         
         while (rand != valuesStorage.getCurrentValue()) {
-            Scanner scanner = new Scanner(System.in);
-            isInputScannerDataCorrect(scanner);
+        	isInputScannerDataNotString();
+            valuesStorage.setCurrentValue(scanner.nextInt());
+            isInRange();
+            valuesStorage.addPreviousAttemptToStorage(valuesStorage.getAttemptsArchive(), valuesStorage.getCurrentValue());
             view.playerChoise(valuesStorage.getCurrentValue());
             takeNextStep(rand);
             view.printPreviousResluts(valuesStorage.getAttemptsArchive());
         }
     }
-    
     /**
-     * This method created for validating scanner input data.
-     * @param scanner - user-entered value.
-     * @return
+     * Checking method
+     * @return check result.
      */
-    public boolean isInputScannerDataCorrect(Scanner scanner) {
+    public boolean isInputScannerDataNotString() {
         if (!scanner.hasNextInt()) {
         	view.printDataTypeError();
-        	return true;
+        	return false;
         }
-        
-        valuesStorage.setCurrentValue(scanner.nextInt());
-        
+        return true;
+    }
+    
+    /**
+     * Checking current value for the ranges.
+     * @return check result.
+     */
+    public boolean isInRange() {        
         if (valuesStorage.getCurrentValue() >= valuesStorage.getMaxRangeValue()) {
         	view.printOutOfRangeBigger(valuesStorage.getMaxRangeValue());
-        	return true;
+        	return false;
         }
         else if (valuesStorage.getCurrentValue() <= valuesStorage.getMinRangeValue()) {
         	view.printOutOfRangeLess(valuesStorage.getMinRangeValue());
-        	return true;
+        	return false;
         }
-        valuesStorage.addPreviousAttemptToStorage(valuesStorage.getAttemptsArchive(), valuesStorage.getCurrentValue());
-    	return false;
+    	return true;
     }
     
     /**

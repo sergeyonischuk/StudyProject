@@ -57,8 +57,11 @@ public class ValuesStorage {
      * @param arr - arrayList of user attempts.
      * @param currentValue - iterator.
      */
-    public void addPreviousAttemptToStorage(ArrayList prevAttempts, int currentValue) {
-    	prevAttempts.add(currentValue);
+    public ArrayList<Integer> addPreviousAttemptToStorage(ArrayList<Integer> prevAttempts, int currentValue) {
+    	if(currentValue < maxRangeValue && currentValue > minRangeValue) {
+        	prevAttempts.add(currentValue);
+    	}
+    	return prevAttempts;
     }
 
     // Getters and setters.
