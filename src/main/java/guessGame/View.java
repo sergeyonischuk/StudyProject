@@ -2,11 +2,6 @@ package guessGame;
 
 import java.util.ArrayList;
 
-/**
- * View class with Strings.
- * @author Sergey Onischuk
- *
- */
 public class View {
 	private final String NUMBER_CALL = "Please, call a number";
 	private final String OUT_OF_RANGE_LESS = "Your value less than min number. Please, input number, that bigger than ";
@@ -20,66 +15,39 @@ public class View {
 	public void printMessage(String text) {
 		System.out.println(text);
 	}
-	/**
-	 * just greeting.
-	 */
 	
 	public void numberCall() {
 		printMessage(NUMBER_CALL);
 	}
-	/**
-	 * Error text, which is displayed when user tries to enter a string or OutOfRange value.
-	 * @param min - current minimal value.
-	 * @param max - current maximal value.
-	 */
+
 	public void printErrorValue(int min, int max) {
 		printMessage("You need to call number from " + min + " to " + max);
 	}
-	/**
-	 * text, which is displayed when user tries to enter a value, that less than current minimal value.
-	 * @param value - current value.
-	 */
+
 	public void printOutOfRangeLess(int value) {
 		printMessage(OUT_OF_RANGE_LESS + value);
 	}
-	/**
-	 * text, which is displayed when user tries to enter a value, that bigger than current maximal value.
-	 * @param value - current value.
-	 */
+
 	public void printOutOfRangeBigger(int value) {
 		printMessage(OUT_OF_RANGE_BIGGER + value);
 	}
-	/**
-	 * Wrong input data type.
-	 */
+
 	public void printDataTypeError() {
 		printMessage(DATA_TYPE_ERROR);
 	}
 	
-	/**
-	 * print current player's value.
-	 * @param value - current value.
-	 */
 	public void playerChoise(int value) {
 		printMessage(PLAYER_CHOISE + value);
 	}
-	/**
-	 * text, which is displayed when user did not guess the number, that is bigger than current.
-	 * @param value - current value
-	 */
+
 	public void moveUp(int value) {
 		printMessage(MOVE_UP + value);
 	}
-	/**
-	 * text, which is displayed when user did not guess the number, that is less than current.
-	 * @param value - current value
-	 */
+
 	public void moveDown(int value) {
 		printMessage(MOVE_DOWN + value);
 	}
-	/**
-	 * Print win-message with statistic and stupid prize.
-	 */
+
     public void printWinStatistic() {
     	printMessage("***************");
     	printMessage("Gracias! You win!");
@@ -92,11 +60,7 @@ public class View {
     	printMessage("***************");
     }
     
-    /**
-     * print method.
-     * @param arr - ArrayList with previous attempts to print.
-     */
-    public void printPreviousResluts(ArrayList<Integer> arr) {
+    public void printPreviousAttempts(ArrayList<Integer> arr) {
         System.out.print("Entered values: ");
         for (Object anArr : arr) {
             System.out.print(anArr + " ");
