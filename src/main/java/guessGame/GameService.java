@@ -18,10 +18,10 @@ public class GameService {
         while (rand != valuesStorage.getCurrentValue()) {
         	isInputScannerDataNotString(scanner);
             valuesStorage.setCurrentValue(scanner.nextInt());
-            isInRange();
+            isInRange(valuesStorage.getCurrentValue());
             valuesStorage.addPreviousAttemptToStorage(valuesStorage.getAttemptsArchive(), valuesStorage.getCurrentValue());
             view.playerChoise(valuesStorage.getCurrentValue());
-            takeNextStep(rand);
+            isWin(rand);
             view.printPreviousAttempts(valuesStorage.getAttemptsArchive());
         }
     }
@@ -34,27 +34,29 @@ public class GameService {
         return true;
     }
     
-    public boolean isInRange() {        
-        if (valuesStorage.getCurrentValue() >= valuesStorage.getMaxRangeValue()) {
+    public boolean isInRange(int value) {        
+        if (value >= valuesStorage.getMaxRangeValue()) {
         	view.printOutOfRangeGreater(valuesStorage.getMaxRangeValue());
         	return false;
         }
-        else if (valuesStorage.getCurrentValue() <= valuesStorage.getMinRangeValue()) {
+        else if (value <= valuesStorage.getMinRangeValue()) {
         	view.printOutOfRangeLess(valuesStorage.getMinRangeValue());
         	return false;
         }
     	return true;
     }
     
-    public void takeNextStep(int winValue) {
-        if (valuesStorage.getCurrentValue() == winValue) {
-            view.printWinStatistic();
-        } else if (valuesStorage.getCurrentValue() < winValue && valuesStorage.getCurrentValue() > valuesStorage.getMinRangeValue()) {
+    public boolean isWin(int winValue) {
+        if (valuesStorage.getCurrentValue() < winValue && valuesStorage.getCurrentValue() > valuesStorage.getMinRangeValue()) {
             valuesStorage.setMinRangeValue(valuesStorage.getCurrentValue());
             view.moveUp(valuesStorage.getMinRangeValue());
+            return false;
         } else if (valuesStorage.getCurrentValue() > winValue && valuesStorage.getCurrentValue() < valuesStorage.getMaxRangeValue()) {
             valuesStorage.setMaxRangeValue(valuesStorage.getCurrentValue());
             view.moveDown(valuesStorage.getMaxRangeValue());
+            return false;
         }
+        view.printWinStatistic();
+        return true;
     }
 }

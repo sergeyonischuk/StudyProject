@@ -11,8 +11,7 @@ public class ValuesStorageTest {
 	
 	@Test
 	public void testGetRandomValue() {
-		Assert.assertTrue(vs.getRandomValue(vs.getMinRangeValue(), vs.getMaxRangeValue()) > 6 
-				&& vs.getRandomValue(vs.getMinRangeValue(), vs.getMaxRangeValue()) < 8);
+		Assert.assertTrue(vs.getRandomValue(6, 8) > 6 && vs.getRandomValue(6, 8) < 8);
 	}
 	
 	@Test
