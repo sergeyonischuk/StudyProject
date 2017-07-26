@@ -36,7 +36,7 @@ public class GameService {
     
     public boolean isInRange() {        
         if (valuesStorage.getCurrentValue() >= valuesStorage.getMaxRangeValue()) {
-        	view.printOutOfRangeBigger(valuesStorage.getMaxRangeValue());
+        	view.printOutOfRangeGreater(valuesStorage.getMaxRangeValue());
         	return false;
         }
         else if (valuesStorage.getCurrentValue() <= valuesStorage.getMinRangeValue()) {

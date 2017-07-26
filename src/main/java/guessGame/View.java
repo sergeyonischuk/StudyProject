@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class View {
 	private final String NUMBER_CALL = "Please, call a number";
 	private final String OUT_OF_RANGE_LESS = "Your value less than min number. Please, input number, that bigger than ";
-	private final String OUT_OF_RANGE_BIGGER = "Your value bigger than max number. Please, input number, that less than ";
+	private final String OUT_OF_RANGE_GREATER = "Your value greater than max number. Please, input number, that less than ";
 	private final String DATA_TYPE_ERROR = "Please, enter a number, not string";
 	private final String PLAYER_CHOISE = "Your number is ";
 	private final String MOVE_UP = "Move up. New min range number is ";
@@ -28,8 +28,8 @@ public class View {
 		printMessage(OUT_OF_RANGE_LESS + value);
 	}
 
-	public void printOutOfRangeBigger(int value) {
-		printMessage(OUT_OF_RANGE_BIGGER + value);
+	public void printOutOfRangeGreater(int value) {
+		printMessage(OUT_OF_RANGE_GREATER + value);
 	}
 
 	public void printDataTypeError() {
