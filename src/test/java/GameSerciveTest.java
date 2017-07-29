@@ -13,7 +13,7 @@ import junit.framework.Assert;
 public class GameSerciveTest {
 	
 	ValuesStorage vStorage = new ValuesStorage(25, 71, new ArrayList<Integer>());
-	GameService gService = new GameService(vStorage);
+	GameService gService = new GameService();
 	View view = new View();
 	Scanner scannerString = new Scanner("ahahah");
 	Scanner scannerValue = new Scanner("12");

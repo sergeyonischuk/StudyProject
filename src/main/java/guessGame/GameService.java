@@ -6,10 +6,6 @@ public class GameService {
 	private View view = new View();
     private ValuesStorage valuesStorage = new ValuesStorage();
     private Scanner scanner = new Scanner(System.in);
-    
-    public GameService (ValuesStorage valuesStorage) {
-    	this.valuesStorage = valuesStorage;
-    }
 
     public void startGame () {
     	int rand = valuesStorage.getRandomValue(valuesStorage.getMinRangeValue(), valuesStorage.getMaxRangeValue());
