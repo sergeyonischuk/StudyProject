@@ -18,7 +18,7 @@ public class Contact {
 	private String city;
 	private String street;
 	private String houseNumber;
-	private int apartmentNumber;
+	private String apartmentNumber;
 	
 	private String dateOfCreate;
 	private String dateOfLastChange;
@@ -83,7 +83,7 @@ public class Contact {
 		return houseNumber;
 	}
 
-	public int getApartmentNumber() {
+	public String getApartmentNumber() {
 		return apartmentNumber;
 	}
 
@@ -181,7 +181,7 @@ public class Contact {
 			return this;
 		}
 		
-		public Builder setApartmentNumber(int apartmentNumber) {
+		public Builder setApartmentNumber(String apartmentNumber) {
 			Contact.this.apartmentNumber = apartmentNumber;
 			return this;
 		}

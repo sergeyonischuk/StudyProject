@@ -1,14 +1,16 @@
 package regexTask;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
 
 public class Demo {
 
 	public static void main(String[] args) {
-		NoteBookService noteBookService = new NoteBookService();
+		NoteBook noteBook = new NoteBook(new ArrayList<Contact>());
+		ContactCreator cc = new ContactCreator();
 		
-		System.out.println(noteBookService.validateUserInput("1st avenue", NoteBookService.STREET_PATTERN));
+//		System.out.println(noteBookService.validateUserInput("1st avenue", NoteBookService.STREET_PATTERN));
+		cc.addContact(noteBook.getContacts(), cc.createNewContact());
+		System.out.println(noteBook.getContacts().get(0).getAdressGroup());
 	}
 
 }

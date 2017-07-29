@@ -6,8 +6,8 @@ public class NoteBook {
 	
 	private ArrayList<Contact> contactList = new ArrayList<Contact>();
 		
-	public NoteBook(ArrayList<Contact> contactList) {
-		this.contactList = contactList;
+	public NoteBook(ArrayList<Contact> arrayList) {
+		this.contactList = arrayList;
 	}
 
 	public ArrayList<Contact> getContacts() {
