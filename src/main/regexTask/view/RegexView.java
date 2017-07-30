@@ -1,8 +1,11 @@
-package regexTask;
+package view;
 
 import java.util.regex.Pattern;
 
-public class View {
+import controller.NoteBookRegex;
+import enums.ContactGroup;
+
+public class RegexView {
 	
 	public static final String REQUEST_NAME = "Enter the name";
 	public static final String REQUEST_SECOND_NAME = "Enter the second name";

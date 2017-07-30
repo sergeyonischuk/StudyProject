@@ -1,8 +1,12 @@
-package regexTask;
+package controller;
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import enums.ContactGroup;
+import model.Contact;
+import view.RegexView;
 
 public class ContactCreator {
 	
@@ -43,7 +47,7 @@ public class ContactCreator {
 				.setNickName(nickName).setComment(comment).setContactGroup(contactGroup).setMobileNumber(mobileNumber).setMobileNumber2(additionalMobileNumber)
 				.setEMail(eMail).setSkype(skype).setIndex(index).setCity(city).setStreet(street)
 				.setHouseNumber(houseNumber).setApartmentNumber(apartmentNumber).setHouseNumber(houseNumber).build();
-		View.printMessage(View.SUCCESS_NEW_CONTACT);
+		RegexView.printMessage(RegexView.SUCCESS_NEW_CONTACT);
 		return newContact;
 	}
 	
@@ -53,43 +57,43 @@ public class ContactCreator {
 	public void addNameInfo() {
 		scanner = new Scanner(System.in);
 
-			View.printMessage(View.REQUEST_NAME);
+			RegexView.printMessage(RegexView.REQUEST_NAME);
 			name = validateUserInput(scanner.nextLine(), NoteBookRegex.NAME_PATTERN);
-			View.printMessage(View.REQUEST_SECOND_NAME);
+			RegexView.printMessage(RegexView.REQUEST_SECOND_NAME);
 			secondName = validateUserInput(scanner.nextLine(), NoteBookRegex.NAME_PATTERN);
-			View.printMessage(View.REQUEST_PATRONYMIC);
+			RegexView.printMessage(RegexView.REQUEST_PATRONYMIC);
 			patronymic = validateUserInput(scanner.nextLine(), NoteBookRegex.NAME_PATTERN);
-			View.printMessage(View.REQUEST_NICKNAME);
+			RegexView.printMessage(RegexView.REQUEST_NICKNAME);
 			nickName = validateUserInput(scanner.nextLine(), NoteBookRegex.NICKNAME_PATTERN);
 	}
 	
 	public void addContactsInfo() {
 		scanner2 = new Scanner(System.in);
 
-			View.printMessage(View.REQUEST_COMMENT);
+			RegexView.printMessage(RegexView.REQUEST_COMMENT);
 			comment = validateUserInput(scanner2.nextLine(), NoteBookRegex.COMMENT_PATTERN);
-			View.printMessage(View.REQUEST_MOBILE_NUMBER);
+			RegexView.printMessage(RegexView.REQUEST_MOBILE_NUMBER);
 			mobileNumber = validateUserInput(scanner2.nextLine(), NoteBookRegex.PHONE_PATTERN);
-			View.printMessage(View.REQUEST_MOBILE_NUMBER2);
+			RegexView.printMessage(RegexView.REQUEST_MOBILE_NUMBER2);
 			additionalMobileNumber = validateUserInput(scanner2.nextLine(), NoteBookRegex.ADDITIONAL_PHONE_PATTERN);
-			View.printMessage(View.REQUEST_EMAIL);
+			RegexView.printMessage(RegexView.REQUEST_EMAIL);
 			eMail = validateUserInput(scanner2.nextLine(), NoteBookRegex.MAIL_PATTERN);
-			View.printMessage(View.REQUEST_SKYPE);
+			RegexView.printMessage(RegexView.REQUEST_SKYPE);
 			skype = validateUserInput(scanner2.nextLine(), NoteBookRegex.NICKNAME_PATTERN);
 	}
 	
 	public void addAdressInfo() {
 		scanner3 = new Scanner(System.in);
 
-		View.printMessage(View.REQUEST_INDEX);
+		RegexView.printMessage(RegexView.REQUEST_INDEX);
 			index = validateUserInput(scanner3.nextLine(), NoteBookRegex.INDEX_PATTERN);
-			View.printMessage(View.REQUEST_CITY);
+			RegexView.printMessage(RegexView.REQUEST_CITY);
 			city = validateUserInput(scanner3.nextLine(), NoteBookRegex.CITY__PATTERN);
-			View.printMessage(View.REQUEST_STREET);
+			RegexView.printMessage(RegexView.REQUEST_STREET);
 			street = validateUserInput(scanner3.nextLine(), NoteBookRegex.STREET_PATTERN);
-			View.printMessage(View.REQUEST_HOUSE_NUMBER);
+			RegexView.printMessage(RegexView.REQUEST_HOUSE_NUMBER);
 			houseNumber = validateUserInput(scanner3.nextLine(), NoteBookRegex.HOUSE_AND_APPARTMENT_PATTERN);
-			View.printMessage(View.REQUEST_APPARTMENTS_NUMBER);
+			RegexView.printMessage(RegexView.REQUEST_APPARTMENTS_NUMBER);
 			apartmentNumber = validateUserInput(scanner3.nextLine(), NoteBookRegex.HOUSE_AND_APPARTMENT_PATTERN);
 	}
 	
@@ -106,14 +110,14 @@ public class ContactCreator {
 	 */
 	public void addContactGroup() {
 		Scanner scanner = new Scanner(System.in);
-		View.printMessage(View.REQUEST_CONTACT_GROUP);
+		RegexView.printMessage(RegexView.REQUEST_CONTACT_GROUP);
 		
 		int temp = scanner.nextInt();
 		
 		while(temp <= 0 || temp > ContactGroup.values().length) {
 			try {
-				View.printMessage(View.WRONG_INPUT);
-				View.printMessage(View.REQUEST_CONTACT_GROUP);
+				RegexView.printMessage(RegexView.WRONG_INPUT);
+				RegexView.printMessage(RegexView.REQUEST_CONTACT_GROUP);
 				scanner = new Scanner(System.in);
 				temp = scanner.nextInt();
 
@@ -135,7 +139,7 @@ public class ContactCreator {
 		Matcher matcher = pattern.matcher(input);
 			while(!matcher.find()) {
 				try {
-					View.printHelpMessage(pattern);
+					RegexView.printHelpMessage(pattern);
 					 s = new Scanner(System.in);
 					input = s.nextLine();
 					matcher = pattern.matcher(input);

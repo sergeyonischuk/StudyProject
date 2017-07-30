@@ -1,4 +1,6 @@
-package regexTask;
+package model;
+
+import enums.ContactGroup;
 
 public class Contact {
 

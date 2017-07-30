@@ -2,9 +2,10 @@ package main;
 
 
 import java.util.ArrayList;
-import regexTask.Contact;
-import regexTask.ContactCreator;
-import regexTask.NoteBook;
+
+import controller.ContactCreator;
+import model.Contact;
+import model.NoteBook;
 
 public class Main {
 

@@ -5,16 +5,16 @@ import java.util.Scanner;
 
 import org.junit.Test;
 
-import guessGame.GameService;
-import guessGame.ValuesStorage;
-import guessGame.View;
+import gameController.GameService;
+import gameModel.ValuesStorage;
+import gameView.GameView;
 import junit.framework.Assert;
 
 public class GameSerciveTest {
 	
 	ValuesStorage vStorage = new ValuesStorage(25, 71, new ArrayList<Integer>());
 	GameService gService = new GameService();
-	View view = new View();
+	GameView view = new GameView();
 	Scanner scannerString = new Scanner("ahahah");
 	Scanner scannerValue = new Scanner("12");
 	

@@ -1,4 +1,4 @@
-package guessGame;
+package gameModel;
 
 import java.util.ArrayList;
 import java.util.Random;

@@ -1,9 +1,12 @@
-package guessGame;
+package gameController;
 
 import java.util.Scanner;
 
+import gameModel.ValuesStorage;
+import gameView.GameView;
+
 public class GameService {
-	private View view = new View();
+	private GameView view = new GameView();
     private ValuesStorage valuesStorage = new ValuesStorage();
     private Scanner scanner = new Scanner(System.in);
 

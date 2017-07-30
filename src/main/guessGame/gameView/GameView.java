@@ -1,15 +1,15 @@
-package guessGame;
+package gameView;
 
 import java.util.ArrayList;
 
-public class View {
-	private final String NUMBER_CALL = "Please, call a number";
-	private final String OUT_OF_RANGE_LESS = "Your value less than min number. Please, input number, that bigger than ";
-	private final String OUT_OF_RANGE_GREATER = "Your value greater than max number. Please, input number, that less than ";
-	private final String DATA_TYPE_ERROR = "Please, enter a number, not string";
-	private final String PLAYER_CHOISE = "Your number is ";
-	private final String MOVE_UP = "Move up. New min range number is ";
-	private final String MOVE_DOWN = "Move down. New max range number is ";
+public class GameView {
+	private final static String NUMBER_CALL = "Please, call a number";
+	private final static String OUT_OF_RANGE_LESS = "Your value less than min number. Please, input number, that bigger than ";
+	private final static String OUT_OF_RANGE_GREATER = "Your value greater than max number. Please, input number, that less than ";
+	private final static String DATA_TYPE_ERROR = "Please, enter a number, not string";
+	private final static String PLAYER_CHOISE = "Your number is ";
+	private final static String MOVE_UP = "Move up. New min range number is ";
+	private final static String MOVE_DOWN = "Move down. New max range number is ";
 	
 	
 	public void printMessage(String text) {

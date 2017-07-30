@@ -1,7 +1,10 @@
-package regexTask;
+package controller;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
+
+import model.Contact;
+import model.NoteBook;
 
 
 public class NoteBookRegex {
