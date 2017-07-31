@@ -3,6 +3,9 @@ package model;
 import enums.ContactGroup;
 
 public class Contact {
+	
+
+	private String dateOfCreate, dateOfLastChange;
 
 	private String name;
 	private String secondName;
@@ -22,12 +25,21 @@ public class Contact {
 	private String houseNumber;
 	private String apartmentNumber;
 
-	private String dateOfCreate;
-	private String dateOfLastChange;
-
-	private Contact() {
+	public Contact() {
 
 	}
+	
+	//Concatenation methods.
+	
+	public String getSecondNameAndNameFirstLetter() {
+		return secondName + " " + name.charAt(0) + ".";
+	}
+	
+	public String getAdress() {
+		return index + ", " + city + ", " + street + ", " + houseNumber + ", " + apartmentNumber;
+	}
+	
+	// getters
 
 	public String getName() {
 		return name;
@@ -92,127 +104,84 @@ public class Contact {
 	public String getCreateDate() {
 		return dateOfCreate;
 	}
-
-	public String getLastChangeDate() {
+	
+	public String getDateOfLastChange() {
 		return dateOfLastChange;
 	}
-
-	//Concatenation methods.
 	
-	public String getSecondNameAndNameFirstLetter() {
-		return secondName + " " + name.charAt(0) + ".";
+	public String getAdditionalMobileNumber() {
+		return additionalMobileNumber;
+	}
+	
+	// Setters
+
+	public void setDateOfLastChange(String dateOfLastChange) {
+		this.dateOfLastChange = dateOfLastChange;
 	}
 
-	public String getAdress() {
-		return index + ", " + city + ", " + street + ", " + houseNumber + ", " + apartmentNumber;
+	public void setAdditionalMobileNumber(String additionalMobileNumber) {
+		this.additionalMobileNumber = additionalMobileNumber;
 	}
 
-	public static Builder newBuilder() {
-		return new Contact().new Builder();
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	/**
-	 * Nested class Builder, according to the Builder pattern.
-	 * 
-	 * @author Sergey Onischuk
-	 *
-	 */
-
-	public class Builder {
-
-		private Builder() {
-
-		}
-
-		public Builder setName(String name) {
-			Contact.this.name = name;
-			return this;
-		}
-
-		public Builder setSecondName(String secondName) {
-			Contact.this.secondName = secondName;
-			return this;
-		}
-
-		public Builder setPatronymic(String patronymic) {
-			Contact.this.patronymic = patronymic;
-			return this;
-		}
-
-		public Builder setNickName(String nickName) {
-			Contact.this.nickName = nickName;
-			return this;
-		}
-
-		public Builder setComment(String comment) {
-			Contact.this.comment = comment;
-			return this;
-		}
-
-		public Builder setContactGroup(ContactGroup contactGroup) {
-			Contact.this.contactGroup = contactGroup;
-			return this;
-		}
-
-		public Builder setMobileNumber(String mobileNumber) {
-			Contact.this.mobileNumber = mobileNumber;
-			return this;
-		}
-
-		public Builder setMobileNumber2(String mobileNumber2) {
-			Contact.this.additionalMobileNumber = mobileNumber2;
-			return this;
-		}
-
-		public Builder setEMail(String eMail) {
-			Contact.this.eMail = eMail;
-			return this;
-		}
-
-		public Builder setSkype(String skype) {
-			Contact.this.skype = skype;
-			return this;
-		}
-
-		public Builder setIndex(String index) {
-			Contact.this.index = index;
-			return this;
-		}
-
-		public Builder setCity(String city) {
-			Contact.this.city = city;
-			return this;
-		}
-
-		public Builder setStreet(String street) {
-			Contact.this.street = street;
-			return this;
-		}
-
-		public Builder setHouseNumber(String houseNumber) {
-			Contact.this.houseNumber = houseNumber;
-			return this;
-		}
-
-		public Builder setApartmentNumber(String apartmentNumber) {
-			Contact.this.apartmentNumber = apartmentNumber;
-			return this;
-		}
-
-		public Builder setDateOfCreate(String dateOfCreate) {
-			Contact.this.dateOfCreate = dateOfCreate;
-			return this;
-
-		}
-
-		public Builder setDateOfLastChange(String dateOfLastChange) {
-			Contact.this.dateOfLastChange = dateOfLastChange;
-			return this;
-
-		}
-
-		public Contact build() {
-			return Contact.this;
-		}
+	public void setSecondName(String secondName) {
+		this.secondName = secondName;
 	}
+
+	public void setPatronymic(String patronymic) {
+		this.patronymic = patronymic;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+	public void setContactGroup(ContactGroup contactGroup) {
+		this.contactGroup = contactGroup;
+	}
+
+	public void setMobileNumber(String mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
+
+	public void seteMail(String eMail) {
+		this.eMail = eMail;
+	}
+
+	public void setSkype(String skype) {
+		this.skype = skype;
+	}
+
+	public void setIndex(String index) {
+		this.index = index;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public void setHouseNumber(String houseNumber) {
+		this.houseNumber = houseNumber;
+	}
+
+	public void setApartmentNumber(String apartmentNumber) {
+		this.apartmentNumber = apartmentNumber;
+	}
+	
+
+	public void setDateOfCreate(String dateOfCreate) {
+		this.dateOfCreate = dateOfCreate;
+	}
+
 }

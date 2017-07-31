@@ -1,5 +1,7 @@
 package controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -10,105 +12,91 @@ import view.RegexView;
 
 public class ContactCreator {
 	
-	private String name;
-	private String secondName;
-	private String patronymic;
-	private String nickName;
-	
-	private String comment;
-	private ContactGroup contactGroup;
-	private String mobileNumber;
-	private String additionalMobileNumber;
-	private String eMail;
-	private String skype;
-	
-	private String index;
-	private String city;
-	private String street;
-	private String houseNumber;
-	private String apartmentNumber;
-	
+	private Contact newContact = new Contact();
 	private Scanner scanner;
-	private Scanner scanner2;
-	private Scanner scanner3;
+
 	
 	/**
-	 * Creating (with builder pattern) and returning new contact. 
+	 * Creating and returning new contact. 
 	 * @return
 	 */
 	public Contact createNewContact() {
-		Contact newContact;
-		addContactGroup();
-		addNameInfo();
-		addContactsInfo();
-		addAdressInfo();
-		
-		newContact = Contact.newBuilder().setName(name).setSecondName(secondName).setPatronymic(patronymic)
-				.setNickName(nickName).setComment(comment).setContactGroup(contactGroup).setMobileNumber(mobileNumber).setMobileNumber2(additionalMobileNumber)
-				.setEMail(eMail).setSkype(skype).setIndex(index).setCity(city).setStreet(street)
-				.setHouseNumber(houseNumber).setApartmentNumber(apartmentNumber).setHouseNumber(houseNumber).build();
+		addContactGroup(newContact);
+		addNameInfo(newContact);
+		addContactsInfo(newContact);
+		addAdressInfo(newContact);
+		addCurrentTime(newContact);
 		RegexView.printMessage(RegexView.SUCCESS_NEW_CONTACT);
+		
 		return newContact;
+	}
+	
+	public Contact addCurrentTime(Contact contact) {
+		SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+		String currentDateAndTime = format1.format(new Date());
+		
+		contact.setDateOfCreate(currentDateAndTime);
+		contact.setDateOfLastChange(currentDateAndTime);
+		
+		return contact;
 	}
 	
 	/**
 	 * Scan user's input and record it in appropriate variable.
 	 */
-	public void addNameInfo() {
+	public Contact addNameInfo(Contact contact) {
 		scanner = new Scanner(System.in);
 
 			RegexView.printMessage(RegexView.REQUEST_NAME);
-			name = validateUserInput(scanner.nextLine(), NoteBookRegex.NAME_PATTERN);
+			contact.setName(validateUserInput(scanner.nextLine(), NoteBookRegex.NAME_PATTERN));
 			RegexView.printMessage(RegexView.REQUEST_SECOND_NAME);
-			secondName = validateUserInput(scanner.nextLine(), NoteBookRegex.NAME_PATTERN);
+			contact.setSecondName(validateUserInput(scanner.nextLine(), NoteBookRegex.NAME_PATTERN));
 			RegexView.printMessage(RegexView.REQUEST_PATRONYMIC);
-			patronymic = validateUserInput(scanner.nextLine(), NoteBookRegex.NAME_PATTERN);
+			contact.setPatronymic(validateUserInput(scanner.nextLine(), NoteBookRegex.NAME_PATTERN));
 			RegexView.printMessage(RegexView.REQUEST_NICKNAME);
-			nickName = validateUserInput(scanner.nextLine(), NoteBookRegex.NICKNAME_PATTERN);
+			contact.setNickName(validateUserInput(scanner.nextLine(), NoteBookRegex.NICKNAME_PATTERN));
+			
+			return contact;
 	}
 	
-	public void addContactsInfo() {
-		scanner2 = new Scanner(System.in);
+	public Contact addContactsInfo(Contact contact) {
+		scanner = new Scanner(System.in);
 
 			RegexView.printMessage(RegexView.REQUEST_COMMENT);
-			comment = validateUserInput(scanner2.nextLine(), NoteBookRegex.COMMENT_PATTERN);
+			contact.setComment(validateUserInput(scanner.nextLine(), NoteBookRegex.COMMENT_PATTERN));
 			RegexView.printMessage(RegexView.REQUEST_MOBILE_NUMBER);
-			mobileNumber = validateUserInput(scanner2.nextLine(), NoteBookRegex.PHONE_PATTERN);
+			contact.setMobileNumber(validateUserInput(scanner.nextLine(), NoteBookRegex.PHONE_PATTERN));
 			RegexView.printMessage(RegexView.REQUEST_MOBILE_NUMBER2);
-			additionalMobileNumber = validateUserInput(scanner2.nextLine(), NoteBookRegex.ADDITIONAL_PHONE_PATTERN);
+			contact.setAdditionalMobileNumber(validateUserInput(scanner.nextLine(), NoteBookRegex.ADDITIONAL_PHONE_PATTERN));
 			RegexView.printMessage(RegexView.REQUEST_EMAIL);
-			eMail = validateUserInput(scanner2.nextLine(), NoteBookRegex.MAIL_PATTERN);
+			contact.seteMail(validateUserInput(scanner.nextLine(), NoteBookRegex.MAIL_PATTERN));
 			RegexView.printMessage(RegexView.REQUEST_SKYPE);
-			skype = validateUserInput(scanner2.nextLine(), NoteBookRegex.NICKNAME_PATTERN);
+			contact.setSkype(validateUserInput(scanner.nextLine(), NoteBookRegex.NICKNAME_PATTERN));
+			
+			return contact;
 	}
 	
-	public void addAdressInfo() {
-		scanner3 = new Scanner(System.in);
+	public Contact addAdressInfo(Contact contact) {
+		scanner = new Scanner(System.in);
 
-		RegexView.printMessage(RegexView.REQUEST_INDEX);
-			index = validateUserInput(scanner3.nextLine(), NoteBookRegex.INDEX_PATTERN);
+			RegexView.printMessage(RegexView.REQUEST_INDEX);
+			contact.setIndex(validateUserInput(scanner.nextLine(), NoteBookRegex.INDEX_PATTERN));
 			RegexView.printMessage(RegexView.REQUEST_CITY);
-			city = validateUserInput(scanner3.nextLine(), NoteBookRegex.CITY__PATTERN);
+			contact.setCity(validateUserInput(scanner.nextLine(), NoteBookRegex.CITY__PATTERN));
 			RegexView.printMessage(RegexView.REQUEST_STREET);
-			street = validateUserInput(scanner3.nextLine(), NoteBookRegex.STREET_PATTERN);
+			contact.setStreet(validateUserInput(scanner.nextLine(), NoteBookRegex.STREET_PATTERN));
 			RegexView.printMessage(RegexView.REQUEST_HOUSE_NUMBER);
-			houseNumber = validateUserInput(scanner3.nextLine(), NoteBookRegex.HOUSE_AND_APPARTMENT_PATTERN);
+			contact.setHouseNumber(validateUserInput(scanner.nextLine(), NoteBookRegex.HOUSE_AND_APPARTMENT_PATTERN));
 			RegexView.printMessage(RegexView.REQUEST_APPARTMENTS_NUMBER);
-			apartmentNumber = validateUserInput(scanner3.nextLine(), NoteBookRegex.HOUSE_AND_APPARTMENT_PATTERN);
-	}
-	
-	public void addCreationDay() {
-		// must be realized soon...
-	}
-	
-	public void updateDateOfLastChangeInContact() {
-		// must be realized soon...
+			contact.setApartmentNumber(validateUserInput(scanner.nextLine(), NoteBookRegex.HOUSE_AND_APPARTMENT_PATTERN));
+			
+			return contact;
 	}
 	
 	/**
 	 * Scan user's input number and find the contact group (in enum class), that corresponding to this value.
 	 */
-	public void addContactGroup() {
+	public Contact addContactGroup(Contact contact) {
 		Scanner scanner = new Scanner(System.in);
 		RegexView.printMessage(RegexView.REQUEST_CONTACT_GROUP);
 		
@@ -126,8 +114,9 @@ public class ContactCreator {
 			}
 		}
 		ContactGroup[] cg = ContactGroup.values();
-		contactGroup = cg[temp - 1];
-	}
+		contact.setContactGroup(cg[temp - 1]);
+		return contact;
+}
 	/**
 	 * User's input data validator.
 	 * @param input - user's input
