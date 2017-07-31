@@ -1,20 +1,20 @@
 package controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import enums.ContactGroup;
 import model.Contact;
+import model.NoteBook;
+import model.UniqueNickNameException;
 import view.RegexView;
 
 public class ContactCreator {
 	
 	private Contact newContact = new Contact();
 	private Scanner scanner;
-
 	
 	/**
 	 * Creating and returning new contact. 
@@ -25,20 +25,9 @@ public class ContactCreator {
 		addNameInfo(newContact);
 		addContactsInfo(newContact);
 		addAdressInfo(newContact);
-		addCurrentTime(newContact);
 		RegexView.printMessage(RegexView.SUCCESS_NEW_CONTACT);
 		
 		return newContact;
-	}
-	
-	public Contact addCurrentTime(Contact contact) {
-		SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-		String currentDateAndTime = format1.format(new Date());
-		
-		contact.setDateOfCreate(currentDateAndTime);
-		contact.setDateOfLastChange(currentDateAndTime);
-		
-		return contact;
 	}
 	
 	/**
