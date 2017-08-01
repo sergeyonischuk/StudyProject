@@ -1,6 +1,6 @@
 package enums;
 
 public enum ContactGroup {
-	WORK, FAMILY, FRIENDS, OTHER
+	WORK, FAMILY, FRIENDS, DSDS, OTHER
 
 }

@@ -12,7 +12,7 @@ public class RegexView {
 	public static final String REQUEST_PATRONYMIC = "Enter the patronymic";
 	public static final String REQUEST_NICKNAME = "Enter the nickname";
 	public static final String REQUEST_COMMENT = "Enter the comment";
-	public static final String REQUEST_CONTACT_GROUP = "Enter number of group: " + ContactGroup.FAMILY + "(1), " + ContactGroup.FRIENDS + "(2), " + ContactGroup.WORK + "(3), " + ContactGroup.OTHER + "(4)";
+	public static final String REQUEST_CONTACT_GROUP = "Enter number of group: ";
 	public static final String REQUEST_MOBILE_NUMBER = "Enter the mobile number in format +380";
 	public static final String REQUEST_MOBILE_NUMBER2 = "Enter the additional mobile number (or leave this field empty)";
 	public static final String REQUEST_EMAIL = "Enter the email";
@@ -26,7 +26,14 @@ public class RegexView {
 	public static final String SUCCESS_NEW_CONTACT = "***New contact was created***";
 	public static final String WRONG_INPUT = "Wrong input";
 	
-	
+	public static void printGroupsList() {
+		ContactGroup[] newList = ContactGroup.values();
+		
+		for (int i = 0; i < newList.length; i++) {
+			printMessage(newList[i].toString() + "(" + (i + 1) + ") ");
+		}
+		printMessage("");
+	}
 	
 	public static void printMessage(String text) {
 		System.out.println(text);

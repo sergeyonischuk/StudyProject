@@ -15,6 +15,7 @@ public class ContactCreator {
 	
 	private Contact newContact = new Contact();
 	private Scanner scanner;
+	private NoteBook noteBook;
 	
 	/**
 	 * Creating and returning new contact. 
@@ -85,9 +86,11 @@ public class ContactCreator {
 	/**
 	 * Scan user's input number and find the contact group (in enum class), that corresponding to this value.
 	 */
+
 	public Contact addContactGroup(Contact contact) {
 		Scanner scanner = new Scanner(System.in);
 		RegexView.printMessage(RegexView.REQUEST_CONTACT_GROUP);
+		RegexView.printGroupsList();
 		
 		int temp = scanner.nextInt();
 		
@@ -95,6 +98,7 @@ public class ContactCreator {
 			try {
 				RegexView.printMessage(RegexView.WRONG_INPUT);
 				RegexView.printMessage(RegexView.REQUEST_CONTACT_GROUP);
+				RegexView.printGroupsList();
 				scanner = new Scanner(System.in);
 				temp = scanner.nextInt();
 
