@@ -9,12 +9,6 @@ public class NoteBook {
 	public NoteBook(ArrayList<Contact> arrayList) {
 		this.contactBase = arrayList;
 	}
-	
-
-	
-	public void addContact(Contact contact) {
-		contactBase.add(contact);
-	}
 
 	public ArrayList<Contact> getContacts() {
 		return contactBase;

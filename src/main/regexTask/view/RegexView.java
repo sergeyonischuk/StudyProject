@@ -30,7 +30,7 @@ public class RegexView {
 		ContactGroup[] newList = ContactGroup.values();
 		
 		for (int i = 0; i < newList.length; i++) {
-			printMessage(newList[i].toString() + "(" + (i + 1) + ") ");
+			System.out.print(newList[i].toString() + "(" + (i + 1) + ") ");
 		}
 		printMessage("");
 	}
@@ -62,7 +62,7 @@ public class RegexView {
 			printMessage("Try again. The first letter should be capitalized. Also you can use \"-\" symbol ");
 		} else if(pattern.equals(NoteBookRegex.STREET_PATTERN)) {
 			printMessage("Try again. The first letter should be capitalized. Also you can use \"-\" symbol ");
-		} else if(pattern.equals(NoteBookRegex.STREET_PATTERN)) {
+		} else if(pattern.equals(NoteBookRegex.HOUSE_AND_APPARTMENT_PATTERN)) {
 			printMessage("Try again. You can use numbers (max symbols - 3). Also you can use \"-\", and any english letter");
 		} else {
 			printMessage("Hm.. You entered something wrong, but I do not know what :( Try to decide it on your own, okay?");

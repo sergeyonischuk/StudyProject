@@ -1,5 +1,6 @@
 package controller;
 
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -13,26 +14,48 @@ import view.RegexView;
 
 public class ContactCreator {
 	
-	private Contact newContact = new Contact();
 	private Scanner scanner;
-	private NoteBook noteBook;
+	
+	public void addNewContactInNoteBook(NoteBook noteBook) throws UniqueNickNameException {
+		Contact contact = compileContactInfo();
+		checkUniqueNickname(contact.getNickName(), noteBook.getContacts());
+		noteBook.getContacts().add(contact);
+		
+		RegexView.printMessage(RegexView.SUCCESS_NEW_CONTACT);
+	}
 	
 	/**
-	 * Creating and returning new contact. 
-	 * @return
+	 * Based on the information entered, creating new Contact. 
+	 * @return new Contact.
 	 */
-	public Contact createNewContact() {
+	private Contact compileContactInfo() {
+		Contact newContact = new Contact();
+		
 		addContactGroup(newContact);
 		addNameInfo(newContact);
 		addContactsInfo(newContact);
 		addAdressInfo(newContact);
-		RegexView.printMessage(RegexView.SUCCESS_NEW_CONTACT);
 		
 		return newContact;
 	}
 	
 	/**
-	 * Scan user's input and record it in appropriate variable.
+	 * If nickname, that was inputed by user, is not unique - throw UniqueNickNameExceptoion.
+	 * @param nickname
+	 * @param arr
+	 * @throws UniqueNickNameException
+	 */
+	public void checkUniqueNickname(String nickname, ArrayList<Contact> arr) throws UniqueNickNameException {
+		for (int i = 0; i < arr.size(); i++) {
+			if(nickname.equals(arr.get(i).getNickName())) {
+				throw new UniqueNickNameException("this nickname is not unique");
+			}
+		}
+	}
+	
+	
+	/**
+	 * Scan user's input and record it in a Contact.
 	 */
 	public Contact addNameInfo(Contact contact) {
 		scanner = new Scanner(System.in);

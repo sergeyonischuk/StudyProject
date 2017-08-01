@@ -1,10 +1,7 @@
 package model;
 
-import java.util.Scanner;
 
-import controller.ContactCreator;
-
-public class UniqueNickNameException extends Throwable{
+public class UniqueNickNameException extends Exception{
 		
 	    public UniqueNickNameException(String message){
 	        super(message);
