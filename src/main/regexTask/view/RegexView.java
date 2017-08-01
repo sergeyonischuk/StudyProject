@@ -25,6 +25,7 @@ public class RegexView {
 	
 	public static final String SUCCESS_NEW_CONTACT = "***New contact was created***";
 	public static final String WRONG_INPUT = "Wrong input";
+	public static final String NOT_UNIQUE_NICKNAME = "This nickname is not unique. Please, write another nickname";
 	
 	public static void printGroupsList() {
 		ContactGroup[] newList = ContactGroup.values();

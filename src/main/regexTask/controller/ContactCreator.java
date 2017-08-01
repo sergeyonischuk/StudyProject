@@ -16,28 +16,34 @@ public class ContactCreator {
 	
 	private Scanner scanner;
 	
-	public void addNewContactInNoteBook(NoteBook noteBook) throws UniqueNickNameException {
-		Contact contact = compileContactInfo();
-		checkUniqueNickname(contact.getNickName(), noteBook.getContacts());
-		noteBook.getContacts().add(contact);
-		
-		RegexView.printMessage(RegexView.SUCCESS_NEW_CONTACT);
-	}
 	
 	/**
-	 * Based on the information entered, creating new Contact. 
-	 * @return new Contact.
+	 * Based on the information entered, creating new Contact in notebook. 
 	 */
-	private Contact compileContactInfo() {
+	public void addNewContactInNoteBook(NoteBook noteBook) throws UniqueNickNameException {
 		Contact newContact = new Contact();
 		
 		addContactGroup(newContact);
 		addNameInfo(newContact);
+		
+		try {
+
+			checkUniqueNickname(newContact.getNickName(), noteBook.getContacts());
+		} catch (Exception e) {
+				RegexView.printMessage(RegexView.NOT_UNIQUE_NICKNAME);
+				RegexView.printMessage(RegexView.REQUEST_NICKNAME);
+				newContact.setNickName(validateUserInput(scanner.nextLine(), NoteBookRegex.NICKNAME_PATTERN));
+		}
+		
 		addContactsInfo(newContact);
 		addAdressInfo(newContact);
+
+		noteBook.getContacts().add(newContact);
 		
-		return newContact;
+		RegexView.printMessage(RegexView.SUCCESS_NEW_CONTACT);
 	}
+	
+
 	
 	/**
 	 * If nickname, that was inputed by user, is not unique - throw UniqueNickNameExceptoion.
@@ -45,14 +51,14 @@ public class ContactCreator {
 	 * @param arr
 	 * @throws UniqueNickNameException
 	 */
-	public void checkUniqueNickname(String nickname, ArrayList<Contact> arr) throws UniqueNickNameException {
+	public boolean checkUniqueNickname(String nickname, ArrayList<Contact> arr) throws UniqueNickNameException {
 		for (int i = 0; i < arr.size(); i++) {
 			if(nickname.equals(arr.get(i).getNickName())) {
 				throw new UniqueNickNameException("this nickname is not unique");
 			}
 		}
+		return true;
 	}
-	
 	
 	/**
 	 * Scan user's input and record it in a Contact.

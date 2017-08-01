@@ -27,8 +27,10 @@ public class Main {
 		
 		contactCreator.addNewContactInNoteBook(noteBook);
 		contactCreator.addNewContactInNoteBook(noteBook);
-//		System.out.println(noteBook.getContacts().get(0).getNickName());
-//		System.out.println(noteBook.getContacts().get(1).getNickName());
+		System.out.println(noteBook.getContacts().get(0).getNickName());
+		System.out.println(noteBook.getContacts().get(1).getNickName());
+		System.out.println(noteBook.getContacts().get(0).getCity());
+		System.out.println(noteBook.getContacts().get(1).getCity());
 		
 	}
 
