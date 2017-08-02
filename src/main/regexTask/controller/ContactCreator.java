@@ -2,6 +2,7 @@ package controller;
 
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -35,8 +36,8 @@ public class ContactCreator {
 				newContact.setNickName(validateUserInput(scanner.nextLine(), NoteBookRegex.NICKNAME_PATTERN));
 		}
 		
-		addContactsInfo(newContact);
-		addAdressInfo(newContact);
+//		addContactsInfo(newContact);
+//		addAdressInfo(newContact);
 
 		noteBook.getContacts().add(newContact);
 		
@@ -121,20 +122,18 @@ public class ContactCreator {
 		RegexView.printMessage(RegexView.REQUEST_CONTACT_GROUP);
 		RegexView.printGroupsList();
 		
-		int temp = scanner.nextInt();
-		
-		while(temp <= 0 || temp > ContactGroup.values().length) {
-			try {
+		int temp = 0;
+
+		try {
+			temp = scanner.nextInt();	
+		} catch (InputMismatchException e) {
 				RegexView.printMessage(RegexView.WRONG_INPUT);
 				RegexView.printMessage(RegexView.REQUEST_CONTACT_GROUP);
 				RegexView.printGroupsList();
 				scanner = new Scanner(System.in);
 				temp = scanner.nextInt();
-
-			} catch (IllegalArgumentException e) {
-				scanner.close();
-			}
 		}
+
 		ContactGroup[] cg = ContactGroup.values();
 		contact.setContactGroup(cg[temp - 1]);
 		return contact;
