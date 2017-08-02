@@ -1,15 +1,9 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.regex.Pattern;
-
-import model.Contact;
-import model.NoteBook;
 
 
 public class NoteBookRegex {
-	
-	NoteBook noteBook = new NoteBook(new ArrayList<Contact>());
 	
 	/**
 	 * Name, SecondName, Patronymic. The first letter should be capitalized, the rest - lowercase. Max symbols - 25.

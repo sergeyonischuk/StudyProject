@@ -3,6 +3,7 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,6 +23,7 @@ public class ContactCreator {
 	 * Based on the information entered, creating new Contact in notebook. 
 	 */
 	public void addNewContactInNoteBook(NoteBook noteBook) throws UniqueNickNameException {
+		Objects.requireNonNull(noteBook);
 		Contact newContact = new Contact();
 		
 		addContactGroup(newContact);
@@ -36,8 +38,8 @@ public class ContactCreator {
 				newContact.setNickName(validateUserInput(scanner.nextLine(), NoteBookRegex.NICKNAME_PATTERN));
 		}
 		
-//		addContactsInfo(newContact);
-//		addAdressInfo(newContact);
+		addContactsInfo(newContact);
+		addAdressInfo(newContact);
 
 		noteBook.getContacts().add(newContact);
 		
@@ -53,6 +55,9 @@ public class ContactCreator {
 	 * @throws UniqueNickNameException
 	 */
 	public boolean checkUniqueNickname(String nickname, ArrayList<Contact> arr) throws UniqueNickNameException {
+		Objects.requireNonNull(nickname);
+		Objects.requireNonNull(arr);
+		
 		for (int i = 0; i < arr.size(); i++) {
 			if(nickname.equals(arr.get(i).getNickName())) {
 				throw new UniqueNickNameException("this nickname is not unique");
@@ -64,7 +69,7 @@ public class ContactCreator {
 	/**
 	 * Scan user's input and record it in a Contact.
 	 */
-	public Contact addNameInfo(Contact contact) {
+	private Contact addNameInfo(Contact contact) {
 		scanner = new Scanner(System.in);
 
 			RegexView.printMessage(RegexView.REQUEST_NAME);
@@ -79,7 +84,7 @@ public class ContactCreator {
 			return contact;
 	}
 	
-	public Contact addContactsInfo(Contact contact) {
+	private Contact addContactsInfo(Contact contact) {
 		scanner = new Scanner(System.in);
 
 			RegexView.printMessage(RegexView.REQUEST_COMMENT);
@@ -96,7 +101,7 @@ public class ContactCreator {
 			return contact;
 	}
 	
-	public Contact addAdressInfo(Contact contact) {
+	private Contact addAdressInfo(Contact contact) {
 		scanner = new Scanner(System.in);
 
 			RegexView.printMessage(RegexView.REQUEST_INDEX);
@@ -117,8 +122,8 @@ public class ContactCreator {
 	 * Scan user's input number and find the contact group (in enum class), that corresponding to this value.
 	 */
 
-	public Contact addContactGroup(Contact contact) {
-		Scanner scanner = new Scanner(System.in);
+	private Contact addContactGroup(Contact contact) {
+		scanner = new Scanner(System.in);
 		RegexView.printMessage(RegexView.REQUEST_CONTACT_GROUP);
 		RegexView.printGroupsList();
 		
@@ -145,6 +150,9 @@ public class ContactCreator {
 	 * @return validated data.
 	 */
 	public String validateUserInput(String input, Pattern pattern) {
+		Objects.requireNonNull(input);
+		Objects.requireNonNull(pattern);
+		
 		Scanner s = new Scanner(System.in);
 		Matcher matcher = pattern.matcher(input);
 			while(!matcher.find()) {

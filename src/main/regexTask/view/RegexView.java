@@ -5,27 +5,36 @@ import java.util.regex.Pattern;
 import controller.NoteBookRegex;
 import enums.ContactGroup;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 public class RegexView {
 	
-	public static final String REQUEST_NAME = "Enter the name";
-	public static final String REQUEST_SECOND_NAME = "Enter the second name";
-	public static final String REQUEST_PATRONYMIC = "Enter the patronymic";
-	public static final String REQUEST_NICKNAME = "Enter the nickname";
-	public static final String REQUEST_COMMENT = "Enter the comment";
-	public static final String REQUEST_CONTACT_GROUP = "Enter number of group: ";
-	public static final String REQUEST_MOBILE_NUMBER = "Enter the mobile number in format +380";
-	public static final String REQUEST_MOBILE_NUMBER2 = "Enter the additional mobile number (or leave this field empty)";
-	public static final String REQUEST_EMAIL = "Enter the email";
-	public static final String REQUEST_SKYPE = "Enter the skype";
-	public static final String REQUEST_INDEX = "Enter the index";
-	public static final String REQUEST_CITY = "Enter the city";
-	public static final String REQUEST_STREET = "Enter the street";
-	public static final String REQUEST_HOUSE_NUMBER = "Enter the house number";
-	public static final String REQUEST_APPARTMENTS_NUMBER = "Enter the appartments number";
+	private static Locale locale_ru = new Locale("ru_RU");
+	private static Locale locale_en = new Locale("en_US");
 	
-	public static final String SUCCESS_NEW_CONTACT = "***New contact was created***";
-	public static final String WRONG_INPUT = "Wrong input";
-	public static final String NOT_UNIQUE_NICKNAME = "This nickname is not unique. Please, write another nickname";
+	private static ResourceBundle bundle = ResourceBundle.getBundle("texts", locale_en);
+	
+	
+	public static final String REQUEST_NAME = bundle.getString("name");
+	public static final String REQUEST_SECOND_NAME = bundle.getString("secondName");
+	public static final String REQUEST_PATRONYMIC = bundle.getString("patronymic");
+	public static final String REQUEST_NICKNAME = bundle.getString("nickname");
+	public static final String REQUEST_COMMENT = bundle.getString("comment");
+	public static final String REQUEST_CONTACT_GROUP = bundle.getString("contactGroup");
+	public static final String REQUEST_MOBILE_NUMBER = bundle.getString("mobileNumber");
+	public static final String REQUEST_MOBILE_NUMBER2 = bundle.getString("additionalMobileNumber");
+	public static final String REQUEST_EMAIL = bundle.getString("eMail");
+	public static final String REQUEST_SKYPE = bundle.getString("skype");
+	public static final String REQUEST_INDEX = bundle.getString("index");
+	public static final String REQUEST_CITY = bundle.getString("city");
+	public static final String REQUEST_STREET = bundle.getString("street");
+	public static final String REQUEST_HOUSE_NUMBER = bundle.getString("houseNumber");
+	public static final String REQUEST_APPARTMENTS_NUMBER = bundle.getString("apartmentsNumber");
+	
+	public static final String SUCCESS_NEW_CONTACT = bundle.getString("successNewContact");
+	public static final String WRONG_INPUT = bundle.getString("wrongInput");
+	public static final String NOT_UNIQUE_NICKNAME = bundle.getString("notUniqueNickname");
 	
 	public static void printGroupsList() {
 		ContactGroup[] newList = ContactGroup.values();
@@ -46,27 +55,27 @@ public class RegexView {
 	 */
 	public static void printHelpMessage(Pattern pattern) {
 		if(pattern.equals(NoteBookRegex.NAME_PATTERN)) {
-			printMessage("Try again. The first letter should be capitalized, the rest - lowercase. Max symbols - 25");
+			printMessage(bundle.getString("nameErr"));
 		} else if(pattern.equals(NoteBookRegex.NICKNAME_PATTERN)) {
-			printMessage("Try again. You can use capital and lowercase letters, numbers, symbols \"_\" \"-\" and \".\". Max symbols - 25");
+			printMessage(bundle.getString("nicknameErr"));
 		} else if(pattern.equals(NoteBookRegex.COMMENT_PATTERN)) {
-			printMessage("Try again. You can use any symbols, but not more than 50");
+			printMessage(bundle.getString("commentErr"));
 		} else if(pattern.equals(NoteBookRegex.PHONE_PATTERN)) {
-			printMessage("Try again. Number must start with +380 and 10 numbers");
+			printMessage(bundle.getString("mobileNumberErr"));
 		} else if(pattern.equals(NoteBookRegex.ADDITIONAL_PHONE_PATTERN)) {
-			printMessage("Try again. Number must start with +380 and 10 numbers, or leave this field empty");
+			printMessage(bundle.getString("additionalMobileNumberErr"));
 		} else if(pattern.equals(NoteBookRegex.MAIL_PATTERN)) {
-			printMessage("Try again. Mail adress must have left side (max 255 symbols) + symbol @, domain server's name (for example - gmail.com)");
+			printMessage(bundle.getString("eMailErr"));
 		} else if(pattern.equals(NoteBookRegex.INDEX_PATTERN)) {
-			printMessage("Try again. It must be 5 numbers");
+			printMessage(bundle.getString("indexErr"));
 		} else if(pattern.equals(NoteBookRegex.CITY__PATTERN)) {
-			printMessage("Try again. The first letter should be capitalized. Also you can use \"-\" symbol ");
+			printMessage(bundle.getString("cityErr"));
 		} else if(pattern.equals(NoteBookRegex.STREET_PATTERN)) {
-			printMessage("Try again. The first letter should be capitalized. Also you can use \"-\" symbol ");
+			printMessage(bundle.getString("streetErr"));
 		} else if(pattern.equals(NoteBookRegex.HOUSE_AND_APPARTMENT_PATTERN)) {
-			printMessage("Try again. You can use numbers (max symbols - 3). Also you can use \"-\", and any english letter");
+			printMessage(bundle.getString("houseAndApartmentNumberErr"));
 		} else {
-			printMessage("Hm.. You entered something wrong, but I do not know what :( Try to decide it on your own, okay?");
+			printMessage(bundle.getString("elseErr"));
 		}
 	}
 
