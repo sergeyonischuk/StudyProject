@@ -12,7 +12,7 @@ import view.RegexView;
 
 public class Main {
 
-	public static void main(String[] args) throws UniqueNickNameException {
+	public static void main(String[] args) {
 		NoteBook noteBook = new NoteBook(new ArrayList<Contact>());
 		ContactCreator contactCreator = new ContactCreator();
 		
