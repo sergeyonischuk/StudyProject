@@ -37,14 +37,4 @@ public class NoteBookRegex {
 	 */
 	public static final Pattern STREET_PATTERN = Pattern.compile("^[A-Z][a-z]{1,25}[\\s-A-Z]*{1,25}[\\sa-z]*{1,25}[\\s-A-Z]*{1,25}[\\sa-z]*{1,25}$");
 	public static final Pattern HOUSE_AND_APPARTMENT_PATTERN = Pattern.compile("^[0-9]{1,3}-*[A-Za-z]*{1}$");
-	
-	
-	
-
-	
-
-	
-
-	
-
 }

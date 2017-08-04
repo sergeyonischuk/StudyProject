@@ -315,5 +315,4 @@ class ContactBuilder{
 		
 		return contact;
 	}
-	
 }

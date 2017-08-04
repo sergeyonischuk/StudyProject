@@ -78,5 +78,4 @@ public class RegexView {
 			printMessage(bundle.getString("elseErr"));
 		}
 	}
-
 }

@@ -35,16 +35,6 @@ public class ContactCreator {
 	private String houseNumber;
 	private String apartmentNumber;
 	
-	
-	public Contact createContact() {
-		Contact contact = new ContactBuilder().buildName(name).buildSecondName(secondName).buildPatronymic(patronymic)
-				.buildNickName(nickName).buildComment(comment).buildContactGroup(contactGroup)
-				.buildMobileNumber(mobileNumber).buildAdditionalMobileNumber(additionalMobileNumber)
-				.buildEmail(eMail).buildSkype(skype).buildIndex(index).buildCity(city).buildStreet(street)
-				.buildHouseNumber(houseNumber).buildApartmentsNumber(apartmentNumber).build();
-		return contact;
-	}
-	
 	/**
 	 * Based on the information entered, creating new Contact in notebook. 
 	 */
@@ -68,10 +58,16 @@ public class ContactCreator {
 		RegexView.printMessage(RegexView.SUCCESS_NEW_CONTACT);
 	}
 	
-	
-	
+	public Contact createContact() {
+		
+		Contact contact = new ContactBuilder().buildName(name).buildSecondName(secondName).buildPatronymic(patronymic)
+				.buildNickName(nickName).buildComment(comment).buildContactGroup(contactGroup)
+				.buildMobileNumber(mobileNumber).buildAdditionalMobileNumber(additionalMobileNumber)
+				.buildEmail(eMail).buildSkype(skype).buildIndex(index).buildCity(city).buildStreet(street)
+				.buildHouseNumber(houseNumber).buildApartmentsNumber(apartmentNumber).build();
+		return contact;
+	}
 
-	
 	/**
 	 * If nickname, that was inputed by user, is not unique - throw UniqueNickNameExceptoion.
 	 * @param nickname
@@ -162,7 +158,7 @@ public class ContactCreator {
 
 }
 	/**
-	 * User's input data validator.
+	 * Validating user's input data.
 	 * @param input - user's input
 	 * @param pattern - regex pattern to validate data.
 	 * @return validated data.

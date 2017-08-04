@@ -11,9 +11,6 @@ import model.UniqueNickNameException;
 import view.RegexView;
 
 public class Main {
-	
-	static RegexView regexView = new RegexView();
-	static ContactGroup cG;
 
 	public static void main(String[] args) throws UniqueNickNameException {
 		NoteBook noteBook = new NoteBook(new ArrayList<Contact>());
