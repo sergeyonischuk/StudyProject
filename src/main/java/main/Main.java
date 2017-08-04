@@ -3,9 +3,9 @@ package main;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import controller.Contact;
 import controller.ContactCreator;
 import enums.ContactGroup;
-import model.Contact;
 import model.NoteBook;
 import model.UniqueNickNameException;
 import view.RegexView;
@@ -20,8 +20,6 @@ public class Main {
 		ContactCreator contactCreator = new ContactCreator();
 		
 		contactCreator.addNewContactInNoteBook(noteBook);
-		contactCreator.addNewContactInNoteBook(noteBook);
-		
+		System.out.println(noteBook.getContacts().get(0).toString());
 	}
-
 }

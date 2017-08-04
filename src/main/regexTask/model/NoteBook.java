@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import controller.Contact;
+
 public class NoteBook {
 	
 	private ArrayList<Contact> contactBase = new ArrayList<Contact>();

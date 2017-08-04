@@ -9,7 +9,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import enums.ContactGroup;
-import model.Contact;
 import model.NoteBook;
 import model.UniqueNickNameException;
 import view.RegexView;
@@ -18,33 +17,58 @@ public class ContactCreator {
 	
 	private Scanner scanner;
 	
+	private String name;
+	private String secondName;
+	private String patronymic;
+	private String nickName;
+
+	private String comment;
+	private ContactGroup contactGroup;
+	private String mobileNumber;
+	private String additionalMobileNumber;
+	private String eMail;
+	private String skype;
+
+	private String index;
+	private String city;
+	private String street;
+	private String houseNumber;
+	private String apartmentNumber;
+	
+	
+	public Contact createContact() {
+		Contact contact = new ContactBuilder().buildName(name).buildSecondName(secondName).buildPatronymic(patronymic)
+				.buildNickName(nickName).buildComment(comment).buildContactGroup(contactGroup)
+				.buildMobileNumber(mobileNumber).buildAdditionalMobileNumber(additionalMobileNumber)
+				.buildEmail(eMail).buildSkype(skype).buildIndex(index).buildCity(city).buildStreet(street)
+				.buildHouseNumber(houseNumber).buildApartmentsNumber(apartmentNumber).build();
+		return contact;
+	}
 	
 	/**
 	 * Based on the information entered, creating new Contact in notebook. 
 	 */
-	public void addNewContactInNoteBook(NoteBook noteBook) throws UniqueNickNameException {
+	public void addNewContactInNoteBook(NoteBook noteBook) {
 		Objects.requireNonNull(noteBook);
-		Contact newContact = new Contact();
-		
-		addContactGroup(newContact);
-		addNameInfo(newContact);
-		
+		addContactGroup();
+		addNameInfo();
 		try {
 
-			checkUniqueNickname(newContact.getNickName(), noteBook.getContacts());
+			checkUniqueNickname(nickName, noteBook.getContacts());
 		} catch (Exception e) {
 				RegexView.printMessage(RegexView.NOT_UNIQUE_NICKNAME);
 				RegexView.printMessage(RegexView.REQUEST_NICKNAME);
-				newContact.setNickName(validateUserInput(scanner.nextLine(), NoteBookRegex.NICKNAME_PATTERN));
+				nickName = validateUserInput(scanner.nextLine(), NoteBookRegex.NICKNAME_PATTERN);
 		}
-		
-		addContactsInfo(newContact);
-		addAdressInfo(newContact);
+		addContactsInfo();
+		addAdressInfo();
 
-		noteBook.getContacts().add(newContact);
+		noteBook.getContacts().add(createContact());
 		
 		RegexView.printMessage(RegexView.SUCCESS_NEW_CONTACT);
 	}
+	
+	
 	
 
 	
@@ -69,60 +93,54 @@ public class ContactCreator {
 	/**
 	 * Scan user's input and record it in a Contact.
 	 */
-	private Contact addNameInfo(Contact contact) {
+	private void addNameInfo() {
 		scanner = new Scanner(System.in);
 
 			RegexView.printMessage(RegexView.REQUEST_NAME);
-			contact.setName(validateUserInput(scanner.nextLine(), NoteBookRegex.NAME_PATTERN));
+			name = validateUserInput(scanner.nextLine(), NoteBookRegex.NAME_PATTERN);
 			RegexView.printMessage(RegexView.REQUEST_SECOND_NAME);
-			contact.setSecondName(validateUserInput(scanner.nextLine(), NoteBookRegex.NAME_PATTERN));
+			secondName = validateUserInput(scanner.nextLine(), NoteBookRegex.NAME_PATTERN);
 			RegexView.printMessage(RegexView.REQUEST_PATRONYMIC);
-			contact.setPatronymic(validateUserInput(scanner.nextLine(), NoteBookRegex.NAME_PATTERN));
+			patronymic = validateUserInput(scanner.nextLine(), NoteBookRegex.NAME_PATTERN);
 			RegexView.printMessage(RegexView.REQUEST_NICKNAME);
-			contact.setNickName(validateUserInput(scanner.nextLine(), NoteBookRegex.NICKNAME_PATTERN));
-			
-			return contact;
+			nickName = validateUserInput(scanner.nextLine(), NoteBookRegex.NICKNAME_PATTERN);
 	}
 	
-	private Contact addContactsInfo(Contact contact) {
+	private void addContactsInfo() {
 		scanner = new Scanner(System.in);
 
 			RegexView.printMessage(RegexView.REQUEST_COMMENT);
-			contact.setComment(validateUserInput(scanner.nextLine(), NoteBookRegex.COMMENT_PATTERN));
+			comment = validateUserInput(scanner.nextLine(), NoteBookRegex.COMMENT_PATTERN);
 			RegexView.printMessage(RegexView.REQUEST_MOBILE_NUMBER);
-			contact.setMobileNumber(validateUserInput(scanner.nextLine(), NoteBookRegex.PHONE_PATTERN));
+			mobileNumber = validateUserInput(scanner.nextLine(), NoteBookRegex.PHONE_PATTERN);
 			RegexView.printMessage(RegexView.REQUEST_MOBILE_NUMBER2);
-			contact.setAdditionalMobileNumber(validateUserInput(scanner.nextLine(), NoteBookRegex.ADDITIONAL_PHONE_PATTERN));
+			additionalMobileNumber = validateUserInput(scanner.nextLine(), NoteBookRegex.ADDITIONAL_PHONE_PATTERN);
 			RegexView.printMessage(RegexView.REQUEST_EMAIL);
-			contact.seteMail(validateUserInput(scanner.nextLine(), NoteBookRegex.MAIL_PATTERN));
+			eMail = validateUserInput(scanner.nextLine(), NoteBookRegex.MAIL_PATTERN);
 			RegexView.printMessage(RegexView.REQUEST_SKYPE);
-			contact.setSkype(validateUserInput(scanner.nextLine(), NoteBookRegex.NICKNAME_PATTERN));
-			
-			return contact;
+			skype = validateUserInput(scanner.nextLine(), NoteBookRegex.NICKNAME_PATTERN);
 	}
 	
-	private Contact addAdressInfo(Contact contact) {
+	private void addAdressInfo() {
 		scanner = new Scanner(System.in);
 
 			RegexView.printMessage(RegexView.REQUEST_INDEX);
-			contact.setIndex(validateUserInput(scanner.nextLine(), NoteBookRegex.INDEX_PATTERN));
+			index = validateUserInput(scanner.nextLine(), NoteBookRegex.INDEX_PATTERN);
 			RegexView.printMessage(RegexView.REQUEST_CITY);
-			contact.setCity(validateUserInput(scanner.nextLine(), NoteBookRegex.CITY__PATTERN));
+			city = validateUserInput(scanner.nextLine(), NoteBookRegex.CITY__PATTERN);
 			RegexView.printMessage(RegexView.REQUEST_STREET);
-			contact.setStreet(validateUserInput(scanner.nextLine(), NoteBookRegex.STREET_PATTERN));
+			street = validateUserInput(scanner.nextLine(), NoteBookRegex.STREET_PATTERN);
 			RegexView.printMessage(RegexView.REQUEST_HOUSE_NUMBER);
-			contact.setHouseNumber(validateUserInput(scanner.nextLine(), NoteBookRegex.HOUSE_AND_APPARTMENT_PATTERN));
+			houseNumber  = validateUserInput(scanner.nextLine(), NoteBookRegex.HOUSE_AND_APPARTMENT_PATTERN);
 			RegexView.printMessage(RegexView.REQUEST_APPARTMENTS_NUMBER);
-			contact.setApartmentNumber(validateUserInput(scanner.nextLine(), NoteBookRegex.HOUSE_AND_APPARTMENT_PATTERN));
-			
-			return contact;
+			apartmentNumber = validateUserInput(scanner.nextLine(), NoteBookRegex.HOUSE_AND_APPARTMENT_PATTERN);
 	}
 	
 	/**
 	 * Scan user's input number and find the contact group (in enum class), that corresponding to this value.
 	 */
 
-	private Contact addContactGroup(Contact contact) {
+	private void addContactGroup() {
 		scanner = new Scanner(System.in);
 		RegexView.printMessage(RegexView.REQUEST_CONTACT_GROUP);
 		RegexView.printGroupsList();
@@ -140,8 +158,8 @@ public class ContactCreator {
 		}
 
 		ContactGroup[] cg = ContactGroup.values();
-		contact.setContactGroup(cg[temp - 1]);
-		return contact;
+		contactGroup = cg[temp - 1];
+
 }
 	/**
 	 * User's input data validator.
