@@ -5,10 +5,10 @@ import java.util.Scanner;
 
 import org.junit.Test;
 
-import gameController.GameService;
-import gameModel.ValuesStorage;
-import gameView.GameView;
 import junit.framework.Assert;
+import moreOrLess.GameService;
+import moreOrLess.GameView;
+import moreOrLess.ValuesStorage;
 
 public class GameSerciveTest {
 	

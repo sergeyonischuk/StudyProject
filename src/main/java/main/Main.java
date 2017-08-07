@@ -1,14 +1,10 @@
 package main;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
-import controller.Contact;
-import controller.ContactCreator;
-import enums.ContactGroup;
-import model.NoteBook;
-import model.UniqueNickNameException;
-import view.RegexView;
+import notebook.Contact;
+import notebook.ContactCreator;
+import notebook.NoteBook;
 
 public class Main {
 
@@ -16,6 +12,7 @@ public class Main {
 		NoteBook noteBook = new NoteBook(new ArrayList<Contact>());
 		ContactCreator contactCreator = new ContactCreator();
 		
+		contactCreator.addNewContactInNoteBook(noteBook);
 		contactCreator.addNewContactInNoteBook(noteBook);
 		System.out.println(noteBook.getContacts().get(0).toString());
 	}

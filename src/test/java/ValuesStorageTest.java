@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import org.junit.Assert;
 import org.junit.Test;
 
-import gameModel.ValuesStorage;
+import moreOrLess.ValuesStorage;
 
 public class ValuesStorageTest {
 	
