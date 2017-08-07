@@ -34,22 +34,22 @@ public class ContactCreator extends ContactBuilder {
 	
 	public Contact createContact() {
 		Contact contact = new ContactBuilder()
-				.buildName(validateUserInput(NoteBookRegex.NAME_PATTERN, RegexView.REQUEST_NAME))
-				.buildSecondName(validateUserInput(NoteBookRegex.NAME_PATTERN, RegexView.REQUEST_SECOND_NAME))
-				.buildPatronymic(validateUserInput(NoteBookRegex.NAME_PATTERN, RegexView.REQUEST_PATRONYMIC))
-				.buildNickName(validateUserInput(NoteBookRegex.NICKNAME_PATTERN, RegexView.REQUEST_NICKNAME))
-				.buildComment(validateUserInput(NoteBookRegex.COMMENT_PATTERN, RegexView.REQUEST_COMMENT))
-				.buildContactGroup(addContactGroup())
-				.buildMobileNumber(validateUserInput(NoteBookRegex.PHONE_PATTERN, RegexView.REQUEST_MOBILE_NUMBER))
-				.buildAdditionalMobileNumber(validateUserInput(NoteBookRegex.ADDITIONAL_PHONE_PATTERN, RegexView.REQUEST_MOBILE_NUMBER2))
-				.buildEmail(validateUserInput(NoteBookRegex.MAIL_PATTERN, RegexView.REQUEST_EMAIL))
-				.buildSkype(validateUserInput(NoteBookRegex.NICKNAME_PATTERN, RegexView.REQUEST_SKYPE))
-				.buildIndex(validateUserInput(NoteBookRegex.INDEX_PATTERN, RegexView.REQUEST_INDEX))
-				.buildCity(validateUserInput(NoteBookRegex.CITY__PATTERN, RegexView.REQUEST_CITY))
-				.buildStreet(validateUserInput(NoteBookRegex.STREET_PATTERN, RegexView.REQUEST_STREET))
-				.buildHouseNumber(validateUserInput(NoteBookRegex.HOUSE_AND_APPARTMENT_PATTERN, RegexView.REQUEST_HOUSE_NUMBER))
-				.buildApartmentsNumber(validateUserInput(NoteBookRegex.HOUSE_AND_APPARTMENT_PATTERN, RegexView.REQUEST_APPARTMENTS_NUMBER))
-				.build();
+			.buildName(validateUserInput(NoteBookRegex.NAME_PATTERN, RegexView.REQUEST_NAME))
+			.buildSecondName(validateUserInput(NoteBookRegex.NAME_PATTERN, RegexView.REQUEST_SECOND_NAME))
+			.buildPatronymic(validateUserInput(NoteBookRegex.NAME_PATTERN, RegexView.REQUEST_PATRONYMIC))
+			.buildNickName(validateUserInput(NoteBookRegex.NICKNAME_PATTERN, RegexView.REQUEST_NICKNAME))
+			.buildComment(validateUserInput(NoteBookRegex.COMMENT_PATTERN, RegexView.REQUEST_COMMENT))
+			.buildContactGroup(addContactGroup())
+			.buildMobileNumber(validateUserInput(NoteBookRegex.PHONE_PATTERN, RegexView.REQUEST_MOBILE_NUMBER))
+			.buildAdditionalMobileNumber(validateUserInput(NoteBookRegex.ADDITIONAL_PHONE_PATTERN, RegexView.REQUEST_MOBILE_NUMBER2))
+			.buildEmail(validateUserInput(NoteBookRegex.MAIL_PATTERN, RegexView.REQUEST_EMAIL))
+			.buildSkype(validateUserInput(NoteBookRegex.NICKNAME_PATTERN, RegexView.REQUEST_SKYPE))
+			.buildIndex(validateUserInput(NoteBookRegex.INDEX_PATTERN, RegexView.REQUEST_INDEX))
+			.buildCity(validateUserInput(NoteBookRegex.CITY__PATTERN, RegexView.REQUEST_CITY))
+			.buildStreet(validateUserInput(NoteBookRegex.STREET_PATTERN, RegexView.REQUEST_STREET))
+			.buildHouseNumber(validateUserInput(NoteBookRegex.HOUSE_AND_APPARTMENT_PATTERN, RegexView.REQUEST_HOUSE_NUMBER))
+			.buildApartmentsNumber(validateUserInput(NoteBookRegex.HOUSE_AND_APPARTMENT_PATTERN, RegexView.REQUEST_APPARTMENTS_NUMBER))
+			.build();
 		return contact;
 	}
 
